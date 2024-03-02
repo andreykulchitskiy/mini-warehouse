@@ -1,16 +1,13 @@
 public enum Command {
+    VYHLEDAVANI_ZBOZI ("Vyhledávání zboží"),
     KOSIK ("Košik"),
-    PRIDAT_PRODUKT ("Přidat produkt"),
-    ODEBRAT_PRODUKT ("Odebrat produkt"),
-    OBJENDAT ("Objednat"),
-    VYHLEDAVANI_ZBOZI ("Vyhledávání zboží");
+    EXIT ("Exit");
     private final String operationName;
 
     Command(String operationName) {
         this.operationName = operationName;
     }
-
-    public String getOperationName() {
+    public String getCommandName() {
         return operationName;
     }
 }
