@@ -15,7 +15,7 @@ import java.util.Map;
          updateSectorInventory(order);
      }
 
-     private static Map<String, Integer> sectorInventory = new HashMap<>();
+     private static Map<String, Integer> sectorInventory;
 
      static {
          sectorInventory = new HashMap<>();
@@ -25,9 +25,15 @@ import java.util.Map;
      }
 
      public static void printSectorInventory() {
+         System.out.println("======================================");
+         System.out.println("| Sektor  | Počet objednavek |");
+         System.out.println("======================================");
          for (Map.Entry<String, Integer> entry : sectorInventory.entrySet()) {
-             System.out.println("Sektor: " + entry.getKey() + ", Počet objednavek: " + entry.getValue());
+             String sector = entry.getKey();
+             int count = entry.getValue();
+             System.out.printf("| %-8s| %-17d|\n", sector, count);
          }
+         System.out.println("======================================");
      }
 
      private static void updateSectorInventory(Order order) {
@@ -47,7 +53,7 @@ import java.util.Map;
                  return warehouseProduct.getSector();
              }
          }
-         return null; // Возвращаем null, если продукт не найден
+         return null;
      }
 
      public static void printAllOrders() {

@@ -3,14 +3,21 @@ import java.util.List;
 public class Order {
     private static int orderCounter = 0;
     private String orderNumber;
+    private String orderState;
 
     private List<CartItem> items;
 
     public Order(List<CartItem> items) {
         this.items = items;
         this.orderNumber = generateOrderNumber();
+        this.orderState = "new";
         Warehouse.addOrder(this);
     }
+
+    public void completeOrder() {
+        this.orderState = "packed";
+    }
+
 
     public List<CartItem> getItems() {
         return this.items;
