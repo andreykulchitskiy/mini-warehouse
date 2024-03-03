@@ -12,6 +12,10 @@ public class Order {
         Warehouse.addOrder(this);
     }
 
+    public List<CartItem> getItems() {
+        return this.items;
+    }
+
     public String getOrderNumber() {
         return this.orderNumber;
     }

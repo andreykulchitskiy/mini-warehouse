@@ -1,7 +1,6 @@
 public class WarehouseProduct {
     private Product product;
     private String sector;
-
     private Integer quantity;
 
 

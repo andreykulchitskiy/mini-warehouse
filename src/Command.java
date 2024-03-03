@@ -1,7 +1,8 @@
 public enum Command {
     VYHLEDAVANI_ZBOZI ("Vyhledávání zboží"),
     KOSIK ("Košik"),
-    EXIT ("Exit");
+    EXIT ("Exit"),
+    PODIVATSENASKLAD ("Warehouse");
     private final String operationName;
 
     Command(String operationName) {

@@ -15,17 +15,47 @@ public class Main {
         ConsoleNavigation(1);
     }
 
+
     public static void initializeProducts(ProductManager productManager) {
-        productManager.addProduct(new Product("Rajčata (kg)", "1234567890123", Category.ZELENINA, 50, 8));
-        productManager.addProduct(new Product("Jabka (kg)", "1234567890124", Category.OVOCE, 20, 8));
-        productManager.addProduct(new Product("Hovezí máso (500g)", "1234567890125", Category.MASO, 200, 2));
-        productManager.addProduct(new Product("Okurka 1 ks", "1234567890123", Category.ZELENINA, 15, 8));
-        productManager.addProduct(new Product("Pomeranč 1 ks", "1234567890124", Category.OVOCE, 10, 8));
-        productManager.addProduct(new Product("Kuřecí máso (500g)", "1234567890125", Category.MASO, 120, 2));
-        productManager.addProduct(new Product("Čipsy", "1234567890123", Category.TRVANLIVE, 50, 15));
-        productManager.addProduct(new Product("Čokolada", "1234567890124", Category.TRVANLIVE, 25, 15));
-        productManager.addProduct(new Product("Chleba", "1234567890125", Category.TRVANLIVE, 25, 15));
+        productManager.addProduct(new Product("Rajčata (kg)", "11111", Category.ZELENINA, 50, 8));
+        productManager.addProduct(new Product("Jabka (kg)", "22222", Category.OVOCE, 20, 8));
+        productManager.addProduct(new Product("Hovezí máso (500g)", "33333", Category.MASO, 200, 2));
+        productManager.addProduct(new Product("Okurka 1 ks", "44444", Category.ZELENINA, 15, 8));
+        productManager.addProduct(new Product("Pomeranč 1 ks", "55555", Category.OVOCE, 10, 8));
+        productManager.addProduct(new Product("Kuřecí máso (500g)", "66666", Category.MASO, 120, 2));
+        productManager.addProduct(new Product("Čipsy", "77777", Category.TRVANLIVE, 50, 15));
+        productManager.addProduct(new Product("Čokolada", "88888", Category.TRVANLIVE, 25, 15));
+        productManager.addProduct(new Product("Chleba", "99999", Category.TRVANLIVE, 25, 15));
         productManager.initializeWarehouseProducts();
+    }
+
+    public static void WarehouseNavigation(int krok) {
+        switch (krok) {
+            case 0:
+                printCommandsWarehouse();
+                WarehouseNavigation(readIntInput());
+                break;
+            case 1:
+                Warehouse.printAllOrders();
+                WarehouseNavigation(0);
+                break;
+            case 2:
+                Warehouse.printSectorInventory();
+                WarehouseNavigation(0);
+                break;
+            case 3:
+                Warehouse.printWarehouseProducts();
+                WarehouseNavigation(0);
+            case 4:
+                ConsoleNavigation(1);
+                break;
+            case 5:
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Neplatna volba.");
+                break;
+        }
     }
     public static void ConsoleNavigation(int step) {
         switch (step) {
@@ -62,13 +92,16 @@ public class Main {
             case 2:
                 ConsoleNavigation(3);
                 break;
-            case 3: break;
+            case 3: System.exit(0);
+            break;
+            case 4: WarehouseNavigation(0);
             default:
                 System.out.println(UNKNOWN_INPUT_MESSAGE);
                 ConsoleNavigation(1);
                 break;
         }
     }
+
 
     public static void handleCategoryInput(int categoryChoice) {
         switch (categoryChoice) {
@@ -112,10 +145,7 @@ public class Main {
                         System.out.println(item.getProduct().getName() + " - " + item.getQuantity() + " ks");
                     }
 
-
                     Cart.clearCart();
-                    Warehouse.printAllOrders();
-
                     ConsoleNavigation(1);
                 } else {
                     System.out.println("Váš košík je prázdný. Nemůžete dokončit objednávku.");
@@ -153,6 +183,13 @@ public class Main {
         }
     }
 
+    public static void printCommandsWarehouse() {
+        System.out.println("Vyberte kam chcete pokracovat:");
+        int commandIndex = 1;
+        for (CommandsForWarehouse command : CommandsForWarehouse.values()) {
+            System.out.println(commandIndex++ + ". " + command.getCommandName());
+        }
+    }
     public static void printCategories() {
         System.out.println("Vyberte kategorii:");
         int categoryIndex = 1;
